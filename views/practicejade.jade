@@ -1,0 +1,37 @@
+extends ./include/extend_test
+block content
+    h1 Expressから渡されたオブジェクトを参照する
+    //いろいろな書き方がある。どれがいいんだろう。
+    p #{package.title}
+    p= package.description
+    p!= package.keywords
+
+
+    hr
+    h1 each構文を使う
+    ul
+    //inに直接オブジェクトを記載すると、コンパイルエラーになる。
+      一旦、変数として定義してあげると問題ない。
+      each val,key in #{package}
+        li= key + ':' + val
+  
+    -var hoge = package
+      each val,key in hoge
+        li= key + ':' + val
+
+    hr
+    //includeのテスト
+    h1 includeを使う
+      include ./include/include_test.jade
+
+    script(type='text/javascript')
+
+    
+block hoge
+  h2 これは継承元を上書きしています。
+   
+
+
+
+
+script(src='./js/app.js', charset='UTF-8')

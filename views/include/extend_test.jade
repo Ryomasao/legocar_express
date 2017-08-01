@@ -1,0 +1,13 @@
+doctype html
+html(lang='ja')
+  head
+    meta(charset='UTF-8')
+    title #{package.title}
+  body
+    block content
+        p 上書きされるのでこれは表示されない。
+    hr 
+    h1 extendを使う
+
+    block hoge
+        p これは継承元の表示です。

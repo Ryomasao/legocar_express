@@ -1,0 +1,41 @@
+doctype html
+html(lang='ja')
+    head
+        meta(charset='utf-8')
+        meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        //Bootstrap ラズパイに乗せる時はCDNは使わないようにしたい
+        link(rel='stylesheet',href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css' integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous")
+        //jadeにcssを直接書くときの方法
+        block style
+            //headerとfooterのstyleはここに定義することにした。contentはそれを継承する側でappendする。
+            style().
+                body {
+                  /*navをTOPに固定した際に必要　*/
+                  padding-top: 4.5rem;
+                  /* Margin bottom by footer height */
+                  margin-bottom: 60px;
+                }
+
+                /* Sticky footer styles */
+                html {
+                  position: relative;
+                  min-height: 100%;
+                }
+
+                .footer {
+                  position: absolute;
+                  bottom: 0;
+                  width: 100%;
+                  /* Set the fixed height of the footer here */
+                  height: 60px;
+                  background-color: #f5f5f5;
+                }
+    
+        block title
+        block meta
+    body
+        include ./include/header
+        block content
+        include ./include/footer
+        include ./include/scripts
