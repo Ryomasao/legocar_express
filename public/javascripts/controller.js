@@ -16,7 +16,17 @@ $(function(){
 
     console.log("よみこんだ");
     
-    var connectTo = $("#connectTo").data("num");
+    var connectTo_FLASK_WAN = $("#connectTo_FLASK_WAN").data("num");
+    var connectTo_MPJG_WAN = $("#connectTo_MPJG_WAN").data("num");
+    var connectTo_FLASK_LAN = $("#connectTo_FLASK_LAN").data("num");
+    var connectTo_MPJG_LAN = $("#connectTo_MPJG_LAN").data("num");
+    var isGlobal = $("#isGlobal").data("num");
+
+    console.log(connectTo_FLASK_WAN);
+    console.log(connectTo_MPJG_WAN);
+    console.log(connectTo_FLASK_LAN);
+    console.log(connectTo_MPJG_LAN);
+    console.log(isGlobal);
 
     /*socket通信はFlaskで立てているWebサーバーに接続している。
     *node.jsで立てているサーバーではない。

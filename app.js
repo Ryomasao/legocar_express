@@ -16,10 +16,6 @@ var practice = require('./routes/practice');
 //自分のブログでちょっと触れた箇所
 //http://www.tohuandkonsome.site/entry/2017/07/21/153646
 
-
-//環境変数(.env)の読み込み
-require('dotenv').config();
-
 var app = express();
 
 // view engine setup

@@ -119,7 +119,11 @@ block content
       //サイドバー、スマホ表示では、カメラとコントローラーの下に入り込む。
       .col-md-3 
         p PC版はキーボードでも操作できるよ！
-        p#connectTo(data-num="#{connectTo}",style={"visibility":"hidden"})
+        #isGlobal(data-num="#{env.isGlobal}")
+        #connectTo_FLASK_WAN(data-num="#{env.connectTo_FLASK_WAN}",style={"visibility":"hidden"})
+        #connectTo_MPJG_WAN(data-num="#{env.connectTo_MPJG_WAN}",style={"visibility":"hidden"})
+        #connectTo_FLASK_LAN(data-num="#{env.connectTo_FLASK_LAN}",style={"visibility":"hidden"})
+        #connectTo_MPJG_LAN(data-num="#{env.connectTo_MPJG_LAN}",style={"visibility":"hidden"})
 
 
 
