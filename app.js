@@ -6,7 +6,19 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+var controller = require('./routes/controller');
+var practice = require('./routes/practice');
+//require()とすることでpracice.jsを実行する。
+//返ってくる変数は、practice.jsでmodule.exportに設定しているオブジェクトになる。
+//他にもいろいろある。検証したソースがどっかにいってしまった。
+//以下を参考にしたので気になったら再度検証。
+//http://fernweh.jp/b/nodejs-require-exports/
+//自分のブログでちょっと触れた箇所
+//http://www.tohuandkonsome.site/entry/2017/07/21/153646
+
+
+//環境変数(.env)の読み込み
+require('dotenv').config();
 
 var app = express();
 
@@ -23,9 +35,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname + '/node_modules'));
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/controller', controller);
+app.use('/practice', practice);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -44,5 +58,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;

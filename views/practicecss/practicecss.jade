@@ -1,0 +1,236 @@
+extends ../partial_practicecss/layout
+block content
+    .parent
+        .child it gose without saying pinky is pretty
+    
+    h2 前提
+    p すべての要素はdisplayプロパティを持っている。<br/>
+      |block、inline、noneの３種類。<br/>
+      |blockは、新しい行として扱われ、可能な限り、画面の横いっぱいに広げられる。<br/>
+
+    hr
+    h2 寄せる
+    p ここでは、中央寄せを学んでみる。
+    
+    p まずは、スタイルを何も当てていない状態。 
+
+    div.myblock1
+        |これはblock要素である、divである。画面いっぱいに広がる。
+       
+    <br/>
+    h3 テキストのみを中央寄せにする。
+    p text-align:center を行うことで対応できる。
+    div.myblock2
+        |これはtext-align:centerをしている
+
+    <br/>
+    h3 要素全体を中央寄せにする。
+    p テキストだけではなく、要素そのもの（ここではdivタグ)を中央寄せにする。<br/>
+      |divタグについては、背景色をグレーにしているので、このグレーの矩形が要素になる。
+      |ブロックレベルの要素にwidthを指定すると、左右横いっぱいにはならずに、widthで指定した値になる。
+      |ここでは、width:600pxと指定する。
+
+    div.myblock3
+        |あいうえお、かきくけこさしすせと<br/>
+        |このブロック要素のwidthは600pxを指定しています。
+
+    p しかし、これだけでは、左側に寄った状態となる。デフォルトはこうなる、ぐらいの感覚であろうか。
+      |そこで、marginで横幅の指定をする。
+      |marginとは、他の要素との間を指定するものである。
+
+    p 参考程度にmarginを書いてみた。
+      |以下はmarginを0にしている状態である。
+      |尚、widthは100px
+
+    div.myblock4
+        |要素1
+    
+    div.myblock4
+        |要素2
+    
+    div.myblock4
+        |要素3
+
+    p 
+      |以下はmarginを10pxにしている状態である。
+
+    div.myblock5
+        |要素1
+    
+    div.myblock5
+        |要素2
+    
+    div.myblock5
+        |要素3
+
+    p 上記の要素はwidth:100pxである。<br/>
+      |bodyのwidthは設定してない。だけど、bodyのwidthの左から10pxと考えてもいいはず。
+
+
+    p 試しに親要素がwidth:600px、子が200pxの状態で左端にmargin200pxをいれてみよう。<br/>
+    p 下記は要素を並列に並べている。
+
+
+    div.myblock6_parent
+        |親の要素:width:600px
+
+    div.myblock6_child
+        |子の要素:width:200px
+
+    p 入れ子にしてみよう。
+
+    div.myblock6_parent
+        |親の要素:width:600px
+
+        div.myblock6_child
+         |子の要素:width:200px
+    
+    p 子にmargin200pxを左端にいれてみる。
+
+    div.myblock6_parent
+        |親の要素:width:600px
+
+        div.myblock6_child(style={"margin-left":"200px"})
+         |子の要素:width:200px
+
+    p いい感じに中央寄せになった。これは親要素が600pxで、子要素が200pxで3等分になっているから。</br>
+    |手動で計算するのは大変。<br/>なので、marginの左右にautoを入れると、親要素と、子要素の差分のwidthを左右いい感じに埋めてくれる。<br/>
+    |具体的には、margin:0 auto とすればよい。</br>
+
+
+    div.myblock6_parent
+        |親の要素:width:600px
+
+        div.myblock6_child(style={"margin":"0 auto"})
+         |子の要素:width:200px
+
+    br
+    hr
+    h3 ちょっとレスポンシブ max-width
+    p ここまでの復習
+    ul
+        li: p block要素はwidthを指定しないと、幅いっぱいに広がる。
+        li: p widthを指定すると、幅いっぱいではなく、長さを指定できる。
+        li: p 中央寄せにしたいとき、幅を決めて、左右のmarginをautoにしよう。
+        li: p 長さが決まってないんだけれども、中央に寄せたいぜって場合はどうするのってのはあとで試そう。
+
+    h4 長さが決まってないんだけれども、中央に寄せたいぜ
+    p やっぱり気になるので先に。
+    br
+    p まずは、widthを指定していない要素を用意する。
+    div.myblock7
+        |これは長さの決まっていない要素です。
+
+    p この状態で、左右のmarginをautoにしてみよう。
+    div.myblock7_width
+        |marginがauto
+    
+    p なにもかわらない。autoっていっても、左右に余白がないからどうしようもないんだろうか。
+
+    p 次に、autoではなく、左右にmarginを固定でいれてみる。
+    div.myblock7_width_100
+        |marginが100px
+        
+    p これでもいいかもしれない。
+
+    p 次に、text-align:centerを試してみたい。
+    p block要素をdisplayをinline-blockとすることで、インライン要素とする。そうすると親のtext-align:centerで中央にもってくることができる。
+
+    div.myblock7_inline2_parent
+        div.myblock7_inline2_child
+            |子要素のwidthは指定してないので、テキスト分widthが設定されている。
+
+
+    h4 本題に移る。max-widthについて
+
+    p 下記の要素はmax-width:300pxである。ブラウザの画面を小さくして横幅を300px以下にしてみよう。
+    p 300pxにした際に収まりきらないwidthは、ブラウザの水平バーが解決してくれる。
+    div.myblock8_width
+        |この要素のwidhtは300pxである。
+
+    p 一方、こちらはmax-width:300pxである。同じようにブラウザの画面を300px以下にしようとすると、要素を折り返すこと確認できるる。</br>
+
+    div.myblock8_maxwidth
+        |この要素のwidhtは300pxである。
+
+    p とはいえ、max-widthのmaxってなんだろうってすごくわかりにくい。<br/>
+    |本来的なところからアプローチしてみよう。
+
+    p 以降の内容は、https://saruwakakun.com/html-css/basic/max-min-widthを参考にしている。
+
+    h4 まずはmin-width：要素が指定した以上に小さくならないこと。
+        
+    p widthを割合で指定すると、その親要素が小さくなれば、当然子要素も小さくなる。<br/>
+    |スマホなどブラウザの画面サイズそのものが小さいとき、ちょっと小すぎ！ということが起こる。<br/>
+    |そういうときは、min-widthを指定してあげると、割合で指定したwidthによって小さくなった要素も、
+    |min-width分は確保される。<br/>
+    |つまり、min-widthはwidthとセットで使うものなのかな。
+
+    p 以下は親要素はbodyに対して80%。子はwidth:50%。
+
+    .myblock9
+        |親要素
+        .nomin
+            |min-width:200px
+        .min
+            |min-widthなし
+
+
+
+    p 以下は親要素はbodyに対して50%。子はwidth:50%。
+    .myblock10
+        |親要素
+        .nomin
+            |min-width:200px
+        .min
+            |min-widthなし
+        
+
+    h4 max-width：要素が指定した以上に大きくならないこと。
+
+    p でかい要素を用意したくって、文字を縦横中央寄せにしたくって。話がそれている。
+
+
+    p 以下は、block要素の中にblock要素をいれて、子要素をabsolute + top〜bottom:0のやり方。<br/>
+    |たしかに、子要素は中央によったけれども、テキストは中央じゃない。
+    .myblock11
+        .myblock11_child  でかい要素
+
+    p　http://qiita.com/Shinji-m/items/69a392685699f3ba95fbを参考にあとでよんでみよう<br/>
+      |とりあえず、line-heightを設定することで、中央に寄せることができた。<br/>
+      |line-heightの考え方も見直す必要がある。
+    
+
+    .myblock12 でかい要素
+
+
+    h5 話を元に戻す。
+    p 以下にでっかい要素がある。スマホの画面を想定していて、画面いっぱいにだしたい。
+
+    .myblock12 今再びのでかい要素
+
+    p スマホだと、いい感じなんだけれども、PCでみるとでかすぎる！みたいなことがあるみたい。<br/>
+     |そんなときは、max-widthを使う。<br/>
+     |以下は、max-widthを900pxに指定している。
+
+    .myblock12_maxwidth 今再びのでかい要素
+
+    p max-widthがうまくいかない
+
+    .myblock12_parent 親
+        .myblock12_child_nomax nomax
+        .myblock12_child_max max
+
+
+    p max-widthがうまくいかない
+    .myblock13 width:80%
+    .myblock14 width:588px
+    .myblock15 width:80% + max-width:588px
+
+    p max-widthがうまくいかない2
+
+    block script
+        script(src='/javascripts/practice.js')
+
+
+

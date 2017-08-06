@@ -3,7 +3,6 @@ html(lang='ja')
     head
         meta(charset='utf-8')
         meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
-        link(rel='stylesheet', href='/stylesheets/style.css')
         //Bootstrap ラズパイに乗せる時はCDNは使わないようにしたい
         link(rel='stylesheet',href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css' integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous")
         //jadeにcssを直接書くときの方法
@@ -35,7 +34,8 @@ html(lang='ja')
         block title
         block meta
     body
-        include ./include/header
+        include header
         block content
-        include ./include/footer
-        include ./include/scripts
+        include footer
+        include scripts
+        block script

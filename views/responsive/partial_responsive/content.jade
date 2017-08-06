@@ -1,0 +1,47 @@
+hr
+h2 基本
+p 1
+.myblock1 width=80%
+p 2
+.myblock2 width=375px
+<br/>
+hr
+h2 max-width
+p max-widthが指定されていない要素
+.myblock3 でかい要素1
+
+p max-widthが指定されている要素
+.myblock3_maxwidth でかい要素2
+
+hr
+h2 min-width
+p min-widthが指定されていない要素
+.myblock4 小さい要素1
+
+p min-widthが指定されている要素
+.myblock4_minwidth 小さい要素2
+
+
+p 要素の中央寄せ
+.myblock6_parent1 親の要素
+    .myblock6_child1 子の様子
+
+p 要素の中央寄せ
+.myblock6_parent2 親の要素
+    .myblock6_child2　子の様子
+
+
+.myblock5
+    //pathの指定の仕方が謎。content.jadeの置き場所が原因か？
+    //controller.jadeの方は、imagesでいけるが、ここでは２階層あげてる。
+
+    //画像を読みに行ったときに、エラーになると、onerror属性で指定した画像が読み込まれる。
+    //カメラがオフのときに表示されることを期待。
+    img(src="../../images/tekitou1.png",width="320",height="240",alt="操作映像",onerror="this.src='/images/error.png'")
+    //要素の中央寄せについては、absolute + top~bottom:0 + margin:autoを使う。ただ、なぜこれで中央寄せになるのかがいまいち謎。
+    //https://hyper-text.org/archives/2014/08/position_absolute_center_layout.shtml
+    //ここに解説があった。が、あんまりわかってない。
+    button.controller_button(style={"visibility":"visible"}) push
+
+
+

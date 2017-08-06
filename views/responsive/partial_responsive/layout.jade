@@ -1,0 +1,128 @@
+doctype html
+html
+    //staticファイルの参照は以下っぽい 
+    link(rel='stylesheet', href='/stylesheets/normalize.css')
+    block meta
+    script(src='/javascripts/jquery-3.2.1.min.js')
+    script(src='/javascripts/practice.js')
+    style().
+        .myblock1{
+            background-color:orange;
+            width:80%;
+        }
+
+        .myblock2{
+            background-color:orange;
+            width:375px;
+        }
+        .myblock3{
+            background-color:yellow;
+            font-size:30px;
+            font-weight:bold;
+            height:300px;
+            width:80%;
+            line-height:300px;
+            text-align:center;
+            margin:0 auto;
+        }
+        .myblock3_maxwidth{
+            background-color:yellow;
+            font-size:30px;
+            font-weight:bold;
+            height:300px;
+            width:80%;
+            max-width:300px;
+            line-height:300px;
+            text-align:center;
+            margin:0 auto;
+        }
+
+        .myblock4{
+            background-color:yellow;
+            font-size:10px;
+            font-weight:bold;
+            height:300px;
+            width:30%;
+            line-height:300px;
+            text-align:center;
+            margin:0 auto;
+        }
+        .myblock4_minwidth{
+            background-color:yellow;
+            font-size:10px;
+            font-weight:bold;
+            height:300px;
+            width:30%;
+            min-width:240px;
+            line-height:300px;
+            text-align:center;
+            margin:0 auto;
+        }
+
+
+
+        .myblock5{
+            position:relative;
+        }
+
+
+
+        .controller_button{
+            position:absolute;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            margin: auto;
+            padding: 0;
+            width:30%;
+            height:30%;
+            background: #4169e1;
+            text-align: center;
+            color: white;
+            border-radius: 10px;
+            font-size:20px;
+        }
+
+        .myblock6_parent1{
+            width:80%;
+            height:100px;
+            background-color:orange;
+        }
+
+        .myblock6_child1{
+            background-color:yellow;
+            width:50%;
+            margin:auto;
+        }
+
+        .myblock6_parent2{
+            width:80%;
+            height:100px;
+            background-color:orange;
+            position:relative;
+        }
+
+        .myblock6_child2{
+            background-color:yellow;
+            width:50%;
+            height:50%;
+            position:absolute;
+            margin:auto;
+            top:0;
+            bottom:0;
+            left:0;
+            right:0;
+        }
+
+
+
+    script().
+        $(function() {
+         var b = $('.myblock3');
+         console.log(b.width());
+        });
+    body
+        //content
+        block header
+        include ./content

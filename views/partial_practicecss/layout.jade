@@ -1,0 +1,203 @@
+doctype html
+html(lang='ja')
+    head
+        meta(charset='utf-8')
+        meta(name="viewport", content="width=device-width,initial-scale=1")
+        style().
+          .parent{
+            text-align:center;
+            background-color:red;
+          }
+
+          .child{
+            background-color:#dddddd;
+          }
+
+          .myblock1{
+            background-color:#dddddd;
+          }
+
+          .myblock2{
+            text-align:center;
+            background-color:#dddddd;
+          }
+
+          .myblock3{
+            width:600px;
+            text-align:center;
+            background-color:#dddddd;
+          }
+
+          .myblock4{
+            margin:0;
+            background-color:#dddddd;
+            width:100px;
+          }
+
+          .myblock5{
+            margin:10px;
+            background-color:#dddddd;
+            width:100px;
+          }
+
+          .myblock6_parent{
+            margin:0px;
+            background-color:#dddddd;
+            width:600px;
+          }
+
+          .myblock6_child{
+            margin:0px;
+            background-color:#56a764;
+            width:200px;
+          }
+
+          /*長さの決まっていない要素*/
+          .myblock7{
+            background-color:#dddddd;
+          }
+
+          /*長さの決まっていない要素*/
+          .myblock7_width{
+            background-color:#dddddd;
+            margin:0 auto;
+          }
+
+          /*長さの決まっていない要素*/
+          .myblock7_width_100{
+            background-color:#dddddd;
+            margin:0 100px;
+          }
+
+          /*長さの決まっていない要素*/
+          .myblock7_inline2_parent{
+            background-color:purple;
+            text-align:center;
+          }
+
+          .myblock7_inline2_child{
+            background-color:#dddddd;
+            display:inline-block;
+          }
+
+          .myblock8_width{
+            background-color:#dddddd;
+            width:300px;
+          }
+
+          .myblock8_maxwidth{
+            background-color:#dddddd;
+            max-width:300px;
+          }
+
+          .myblock9{
+            background-color:#dddddd;
+            width:80%;
+            margin:0 auto;
+          }
+
+          .myblock10{
+            background-color:#dddddd;
+            width:50%;
+            margin:0 auto;
+          }
+
+
+          .min{
+            min-width:200px;
+            width:50%;
+            background-color:orange;
+          }
+
+          .nomin{
+            width:50%;
+            background-color:yellow;
+          }
+
+
+          .myblock11{
+            width:90%;
+            height: 500px;
+            background-color:yellow;
+            margin:auto;
+            font-size:50px;
+            position:relative;
+          }
+
+          .myblock11_child{
+            width:300px;
+            height:50%;
+            font-weight:bold;
+            text-align:center;
+            margin:auto;
+            background-color:yellow;
+            position:absolute;
+            top:0;
+            bottom:0;
+            right:0;
+            left:0;
+          }
+
+          .myblock12{
+            width:90%;
+            height: 500px;
+            background-color:yellow;
+            margin:auto;
+            font-size:50px;
+            font-weight:bold;
+            text-align:center;
+            line-height:500px;
+          }
+
+          .myblock12_maxwidth{
+            width:90%;
+            max-width:900px;
+            height: 500px;
+            background-color:yellow;
+            margin:auto;
+            font-size:50px;
+            font-weight:bold;
+            text-align:center;
+            line-height:500px;
+          }
+
+          .myblock12_parent{
+            width:50%;
+            background-color:yellow;
+          }
+
+          .myblock12_child_nomax{
+            width:80%;
+            background-color:gray;
+          }
+          .myblock12_child_max{
+            width:80%;
+            background-color:orange;
+            max-width:241px;
+          }
+
+          .myblock13{
+            width:80%;
+            background-color:orange;
+          }
+
+          .myblock14{
+            width:588px;
+            background-color:yellow;
+          }
+
+          .myblock15{
+            width:80%;
+            background-color:orange;
+            max-width:588px;
+          }
+
+
+
+    body
+        block content
+
+    //jQueryを使いたいので
+    include ../controller/scripts
+    //継承する側で個別のスクリプトを読み込もう
+    block script

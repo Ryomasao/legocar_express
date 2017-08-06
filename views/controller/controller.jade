@@ -1,0 +1,134 @@
+extends layout
+block append style
+  style().
+    #monitor-wrapper{
+     text-align:center;
+     max-width:510px;
+     margin:0 auto;
+     position:relative
+    }
+
+    /*monitor-wrapperじゃなくてimgにborderじゃないと表示されない。なぜだろう。*/
+    #monitor-wrapper > img{
+     width:100%;
+     border:dashed 5px;
+     border-color:#f3f3f3;
+     border-radius:10px;
+     -webkit-border-radius: 10px;    /* Safari,Google Chrome用 */  
+     -moz-border-radius: 10px;   /* Firefox用 */ 
+    }
+
+    #monitor-wrapper > button{
+        padding: 0;
+        width:30%;
+        height:30%;
+        background: #4169e1;
+        text-align: center;
+        color: white;
+        border-radius: 10px;
+        font-size:20px;
+        position:absolute;
+        top:0;
+        bottom:0;
+        left:0;
+        right:0;
+        margin: auto;
+    }
+
+
+    #controller_wrapper{
+      width:100%;
+      height: 200px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin:10px auto;
+      max-width:510px;
+    }
+
+    .controller_button{
+        margin: 1%;
+        padding: 0;
+        width:30%;
+        height:30%;
+        background: #4169e1;
+        text-align: center;
+        color: white;
+        border-radius: 10px;
+        font-size:20px;
+    }
+
+    .dummy_button{
+        margin: 1%;
+        padding: 0;
+        width:30%;
+        height:30%;
+    }
+
+    .container{
+      margin-top:10px;
+    }
+
+block title
+  title レゴカー
+block content
+  .container
+    .row
+      //カメラとコントローラー
+      .col-md-9
+        //カメラ
+        #monitor-wrapper
+          //画像を読みに行ったときに、エラーになると、onerror属性で指定した画像が読み込まれる。
+          //カメラがオフのときに表示されることを期待。
+          img(src="/images/camera.png",onerror="this.src='/images/error.png'")
+          
+          //テストする際のてきとうな画像
+          //img(src="https://placehold.jp/320x240.png")
+          //ストリーミング映像のpath
+          //img(src="http://126.94.66.69:8080/?action=stream")
+
+          //要素の中央寄せについては、absolute + top~bottom:0 + margin:autoを使う。ただ、なぜこれで中央寄せになるのかがいまいち謎。
+          //https://hyper-text.org/archives/2014/08/position_absolute_center_layout.shtml
+          //ここに解説があった。が、あんまりわかってない。
+          button#streamingButton 映像を見る
+
+        //コントローラー
+        #controller_wrapper
+          .dummy_button
+          button.controller_button#wButton 
+            img(src="images/forward.png",width="50",height="50")
+            |W
+          .dummy_button
+          button.controller_button#aButton
+            img(src="images/handle_left.png",width="50",height="50")
+            |A
+          .dummy_button
+          button.controller_button#dButton
+            img(src="images/handle_right.png",width="50",height="50")
+            |D
+          button.controller_button#hButton 
+            img(src="images/rotate_left.png",width="50",height="50")
+            |H
+          button.controller_button#sButton 
+            img(src="images/back.png",width="50",height="50")
+            |S
+          button.controller_button#jButton 
+            img(src="images/rotate_right.png",width="50",height="50")
+            |J
+
+      //サイドバー、スマホ表示では、カメラとコントローラーの下に入り込む。
+      .col-md-3 
+        p PC版はキーボードでも操作できるよ！
+        p#connectTo(data-num="#{connectTo}",style={"visibility":"hidden"})
+
+
+
+block script
+   script(src='/socket.io/socket.io.js')
+   script(src='/javascripts/controller.js')
+
+
+
+
+            
+      
