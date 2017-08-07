@@ -1,8 +1,5 @@
+//node側でグローバル、ローカルの判断をするようになったら使用する。
 module.exports = {
-    sayhello:function(){
-        console.log("sayhello");
-    },
-
     getIP:function (req) {
         if (req.headers['x-forwarded-for']) {
           return req.headers['x-forwarded-for'];

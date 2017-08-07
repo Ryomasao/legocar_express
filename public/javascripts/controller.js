@@ -1,38 +1,21 @@
-
-
-
-//ボタン入力の操作
-
-/*ボタン入力の操作に共通することを、キーボード入力のisSendMessage()の説明に書いているので、
-*時間が開いたら見直そう。
-*/
-
 /* メモ
 * $(function()){}
 * これなんだけれども、HTMLの読み込みが終わったら動くというjQueryの関数になるみたい。
 * HTMLの読み込みが終わらないと、セレクタで要素を探しに行っても見つからないので、この関数内に書く必要がある。
 */
 $(function(){
-
-    console.log("よみこんだ");
+   console.log("よみこんだ");
     
-    var connectTo_FLASK_WAN = $("#connectTo_FLASK_WAN").data("num");
-    var connectTo_MPJG_WAN = $("#connectTo_MPJG_WAN").data("num");
-    var connectTo_FLASK_LAN = $("#connectTo_FLASK_LAN").data("num");
-    var connectTo_MPJG_LAN = $("#connectTo_MPJG_LAN").data("num");
-    var isGlobal = $("#isGlobal").data("num");
+   var connectTo = new ConnectTo();
 
-    console.log(connectTo_FLASK_WAN);
-    console.log(connectTo_MPJG_WAN);
-    console.log(connectTo_FLASK_LAN);
-    console.log(connectTo_MPJG_LAN);
-    console.log(isGlobal);
+   //console.log(connectTo.getConnectToFlask());
+   //console.log(connectTo.getConnectToMPJG());
 
     /*socket通信はFlaskで立てているWebサーバーに接続している。
     *node.jsで立てているサーバーではない。
     *socket変数については、関数内で使っちゃったりしてるので、グローバル変数として扱う。
     */
-    socket = io.connect('http://' + connectTo );
+    socket = io.connect('http://' + connectTo.getConnectToFlask() );
 
     //サーバー側のsocketに接続した場合の動作。クライアント側はとくになし。サーバー側はFlaskのconnectっていうところをみよう。
     socket.on('connect', function () {
@@ -45,11 +28,30 @@ $(function(){
         $(this).css('visibility','hidden');
         //src属性を書き換えることで、画像を切り替えられる。
         //srcを書き換えるだけで、ブラウザはサーバー側に再度リクエストを飛ばすんだね。
-        var changedSrc = $("#monitor-wrapper > img").attr("src").replace("/images/camera.png","http://126.94.66.69:8080/?action=stream");
+        var changedSrc = $("#monitor-wrapper > img").attr("src").replace("/images/camera.png","http://" + connectTo.getConnectToMPJG());
         $("#monitor-wrapper > img").attr("src",changedSrc);
-        var hoge = $("#monitor-wrapper > img").attr("src");
-        console.log(hoge);
     });
+
+    //環境設定ボタンを押した場合の挙動
+    //$("#whichConnectTo").click(function(e){
+    //    //connectTo.whichConnectTo();
+    //    if(connectTo.getState() === "false"){
+    //        $(this).text("お外モード");
+    //    }else{
+    //        $(this).text("自宅モード");
+    //    }
+    //});
+
+    //環境設定ボタンの表示制御
+    if(connectTo.getState() === "WAN"){
+        $("#whichConnectToWAN").addClass("active");
+        $("#whichConnectToLAN").removeClass("active");
+    }
+
+    //ボタン入力の操作
+    /*ボタン入力の操作に共通することを、キーボード入力のisSendMessage()の説明に書いているので、
+    *時間が開いたら見直そう。
+    */
 
     //コントローラーのボタンを押した際の処理
     $('#wButton').mousedown(function(e) {
@@ -193,4 +195,41 @@ function  sendMessage(message)  {
     socket.emit("sendMessage",message);
 }
 
+
+
+var ConnectTo = function(){
+    //this.whichConnectTo();
+}
+
+    ConnectTo.prototype.getConnectToFlask = function(){
+        return $("#connectTo_FLASK").data("num");
+        //return this.FLASK;
+    }
+
+    ConnectTo.prototype.getConnectToMPJG = function(){
+        return $("#connectTo_MPJG").data("num");
+        //return this.MPJG;
+    }
+
+    ConnectTo.prototype.getState = function(){
+        return $("#state").data("num");
+    //    return this.State;
+    }
+
+
+    ConnectTo.prototype.whichConnectTo = function(){
+        //var state = $("#whichConnectTo").attr("aria-pressed");
+        //if (state === "false"){
+        //    //自宅
+        //    this.FLASK = $("#connectTo_FLASK_LAN").data("num");
+        //    this.MPJG = $("#connectTo_MPJG_LAN").data("num");
+        //    this.State = "false";
+        //}else{
+        //    //外
+        //    this.FLASK = $("#connectTo_FLASK_WAN").data("num");
+        //    this.MPJG = $("#connectTo_MPJG_WAN").data("num");
+        //    this.State = "true";
+        //}
+
+    }
 

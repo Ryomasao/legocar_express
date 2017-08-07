@@ -20,7 +20,7 @@ block append style
 
     #monitor-wrapper > button{
         padding: 0;
-        width:30%;
+        width:40%;
         height:30%;
         background: #4169e1;
         text-align: center;
@@ -66,8 +66,10 @@ block append style
     }
 
     .container{
-      margin-top:10px;
+      margin-top:20px;
     }
+
+
 
 block title
   title レゴカー
@@ -118,12 +120,17 @@ block content
 
       //サイドバー、スマホ表示では、カメラとコントローラーの下に入り込む。
       .col-md-3 
-        p PC版はキーボードでも操作できるよ！
-        #isGlobal(data-num="#{env.isGlobal}")
-        #connectTo_FLASK_WAN(data-num="#{env.connectTo_FLASK_WAN}",style={"visibility":"hidden"})
-        #connectTo_MPJG_WAN(data-num="#{env.connectTo_MPJG_WAN}",style={"visibility":"hidden"})
-        #connectTo_FLASK_LAN(data-num="#{env.connectTo_FLASK_LAN}",style={"visibility":"hidden"})
-        #connectTo_MPJG_LAN(data-num="#{env.connectTo_MPJG_LAN}",style={"visibility":"hidden"})
+        p お外で使う場合は、画面上部のモードをかえてね
+        //サーバー側からFlaskおよびカメラの接続先の情報を受け取る。
+        //#isGlobal(data-num="#{env.isGlobal}")
+        //#connectTo_FLASK_WAN(data-num="#{env.connectTo_FLASK_WAN}",style={"visibility":"hidden"})
+        //#connectTo_MPJG_WAN(data-num="#{env.connectTo_MPJG_WAN}",style={"visibility":"hidden"})
+        //#connectTo_FLASK_LAN(data-num="#{env.connectTo_FLASK_LAN}",style={"visibility":"hidden"})
+        //#connectTo_MPJG_LAN(data-num="#{env.connectTo_MPJG_LAN}",style={"visibility":"hidden"})
+        #connectTo_FLASK(data-num="#{env.connectTo_FLASK}",style={"visibility":"hidden"})
+        #connectTo_MPJG(data-num="#{env.connectTo_MPJG}",style={"visibility":"hidden"})
+        #state(data-num="#{env.state}",style={"visibility":"hidden"})
+        
 
 
 
